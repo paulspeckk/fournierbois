@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 CommerceExtensions. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="CommerceExtensions_AdvancedcustomerImportExport::system_convert_advancedcustomer" title="Import/Export Advanced Customers" sortOrder="40" module="CommerceExtensions_AdvancedcustomerImportExport" parent="Magento_Backend::system_convert" action="advancedcustomer/data/importExport" resource="CommerceExtensions_AdvancedcustomerImportExport::import_export"/>
+    </menu>
+</config>
+

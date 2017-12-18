@@ -1,0 +1,563 @@
+<?php
+
+/**
+ * Copyright © 2016 CommerceExtensions. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace CommerceExtensions\AdvancedcustomerImportExport\Model\Data;
+
+use Magento\Framework\App\ResourceConnection;
+
+/**
+ *  CSV Import Handler
+ */
+ 
+class CsvImportHandler
+{ 
+	/**
+     * Resource instance
+     *
+     * @var Resource
+     */
+    protected $_resource;
+
+    /**
+     * Customer factory
+     *
+     * @var \Magento\Catalog\Model\CustomerFactory
+     */
+    protected $_customerFactory;
+	
+	protected $_regions;
+	
+    protected $_customerGroups;
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterfaceFactory
+     */
+    protected $storeManagerInterfaceFactory;
+    /**
+     * CSV Processor
+     *
+     * @var \Magento\Framework\File\Csv
+     */
+    protected $csvProcessor;
+
+	/* REMOVE ATTRIBUTES WE DO NOT WANT TO EXPORT */ 
+    protected $_disabledAttributes = ['default_billing', 'default_shipping', 'increment_id', 'entity_id', 'entity_id', 'website_id', 'group_id'];
+    protected $_disabledAddressAttributes = ['entity_type_id', 'increment_id', 'parent_id', 'attribute_set_id', 'entity_id', 'region_id'];
+	
+    /**
+     * @param \Magento\Customer\Model\CustomerFactory $customerFactory
+     * @param \Magento\Customer\Model\AddressFactory $addressFactory,
+     * @param \Magento\Framework\File\Csv $csvProcessor
+     */
+    public function __construct(
+        ResourceConnection $resource,
+        \Magento\Customer\Model\CustomerFactory $customerFactory,
+		\Magento\Customer\Model\AddressFactory $addressFactory,
+        \Magento\Store\Model\StoreManagerInterfaceFactory $storeManagerInterfaceFactory,
+		\Magento\Customer\Model\ResourceModel\Group\CollectionFactory $customerGroupCollectionFactory,
+		\Magento\Directory\Model\RegionFactory $regionFactory,
+        \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regionCollectionFactory,
+        \Magento\Framework\File\Csv $csvProcessor
+    ) {
+        // prevent admin store from loading
+        $this->_resource = $resource;
+        $this->_customerFactory = $customerFactory;
+        $this->_addressFactory = $addressFactory;
+        $this->storeManagerInterfaceFactory     = $storeManagerInterfaceFactory;
+        $this->_customerGroupCollectionFactory = $customerGroupCollectionFactory;
+		$this->_regionFactory = $regionFactory;
+        $this->_regionCollectionFactory = $regionCollectionFactory;
+        $this->csvProcessor = $csvProcessor;
+        $this->_customerModel = $customerFactory->create();
+        $this->_addressModel = $addressFactory->create();
+    }
+
+    /**
+     * Retrieve a list of fields required for CSV file (order is important!)
+     *
+     * @return array
+     */
+    public function getRequiredCsvFields()
+    {
+		/* BUILD OUT COLUMNS IN DEFAULT ATTRIBUTES */
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$customer_attributes = $objectManager->get('Magento\Customer\Model\Customer')->getAttributes();
+		$customer_address_attributes = $objectManager->get('Magento\Customer\Model\Address')->getAttributes();
+		foreach($customer_attributes as $cal=>$val){
+			if (!in_array($cal, $this->_disabledAttributes)) {
+				$attributesArray[] = $cal;
+			}
+		}
+        foreach($customer_address_attributes as $address_cal=>$address_val){
+			if (!in_array($address_cal, $this->_disabledAddressAttributes)) {
+				/* PREFIX ADDRESS FOR BILLING */
+				$attributesArray[] = "billing_".$address_cal;
+				/* PREFIX ADDRESS FOR SHIPPING */
+				$attributesArray[] = "shipping_".$address_cal;
+			} 
+		}
+		return $attributesArray;
+        // indexes are specified for clarity, they are used during import
+		/*
+        return [
+            0 => __('created_at'),
+            1 => __('review_title'),
+            2 => __('review_detail'),
+            3 => __('nickname'),
+            4 => __('customer_id'),
+            5 => __('product_id'),
+            6 => __('entity_type'),
+            7 => __('status_code'),
+            8 => __('reviews_count'),
+            9 => __('rating_summary'),
+            10 => __('rating_options'),
+            11 => __('store_ids')
+        ];
+		*/
+    }
+
+    /**
+     * Import Data from CSV file
+     *
+     * @param array $file file info retrieved from $_FILES array
+     * @return void
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function importFromCsvFile($file, $params)
+    {
+        if (!isset($file['tmp_name'])) {
+            throw new \Magento\Framework\Exception\LocalizedException(__('Invalid file upload attempt.'));
+        }
+		
+		if($params['import_delimiter'] != "") { $this->csvProcessor->setDelimiter($params['import_delimiter']); }
+		if($params['import_enclose'] != "") { $this->csvProcessor->setEnclosure($params['import_enclose']); }
+		
+        $RawData = $this->csvProcessor->getData($file['tmp_name']);
+        // first row of file represents headers
+        $fileFields = $RawData[0];
+        $customerData = $this->_filterData($fileFields, $RawData);
+		
+        foreach ($customerData as $dataRow) {
+            $this->_importCustomers($dataRow, $params);
+        }
+    }
+
+
+    /**
+     * Filter data (i.e. unset all invalid fields and check consistency)
+     *
+     * @param array $RawDataHeader
+     * @param array $RawData
+     * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     */
+    protected function _filterData(array $RawDataHeader, array $RawData)
+    {
+		$rowCount=0;
+		$RawDataRows = array();
+        foreach ($RawData as $rowIndex => $dataRow) {
+			// skip headers
+            if ($rowIndex == 0) {
+				if(!in_array("email", $dataRow)) {
+                	throw new \Magento\Framework\Exception\LocalizedException(__('ERROR: REQUIRED FIELD "email" NOT FOUND'));
+				}
+				if(!in_array("group", $dataRow)) {
+                	throw new \Magento\Framework\Exception\LocalizedException(__('ERROR: REQUIRED FIELD "group" NOT FOUND'));
+				}
+                continue;
+            }
+            // skip empty rows
+            if (count($dataRow) <= 1) {
+                unset($RawData[$rowIndex]);
+                continue;
+            }
+			/* we take rows from [0] = > value to [website] = base */
+            if ($rowIndex > 0) {
+				foreach ($dataRow as $rowIndex => $dataRowNew) {
+					$RawDataRows[$rowCount][$RawDataHeader[$rowIndex]] = $dataRowNew;
+				}
+			}
+			$rowCount++;
+        }
+        return $RawDataRows;
+    }
+
+	
+    public function getRegionId($country, $regionName)
+    {
+        if (is_null($this->_regions)) {
+            $this->_regions = array();
+            $regionsCollection = $this->_regionCollectionFactory->create()->load();
+            foreach ($regionsCollection as $region) {
+                //$countryRegions[$region->getCountryId()][$region->getId()] = $region->getDefaultName();
+                if (!isset($this->_regions[$region->getCountryId()])) {
+                    $this->_regions[$region->getCountryId()] = array();
+                }
+                $this->_regions[$region->getCountryId()][$region->getDefaultName()] = $region->getId();
+            }
+        }
+
+        if (isset($this->_regions[$country][$regionName])) {
+            return $this->_regions[$country][$regionName];
+        }
+
+        return 0;
+    }
+	/**
+     * Retrieve customer group collection array
+     *
+     * @return array
+     */
+    public function getCustomerGroups()
+    {
+        if (is_null($this->_customerGroups)) {
+            $this->_customerGroups = array();
+			$collection = $this->_customerGroupCollectionFactory->create()->addFieldToFilter('customer_group_id', array('gt'=> 0))->load();
+            foreach ($collection as $group) {
+                $this->_customerGroups[$group->getCustomerGroupCode()] = $group->getId();
+            }
+        }
+        return $this->_customerGroups;
+    }
+
+    /**
+     * Import Customers
+     *
+     * @param array $Data
+     * @param array $params
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    protected function _importCustomers(array $Data, array $params)
+    {
+		#print_r($Data);
+		$connection    = $this->_resource->getConnection();
+        #$website = $this->getWebsiteByCode($importData['website']);
+		$customerModel = $this->_customerFactory->create();
+        $storeManager  = $this->storeManagerInterfaceFactory->create();
+        $websiteId     = $storeManager->getStore($Data['store_id'])->getWebsiteId();
+		$customer      = $customerModel->setWebsiteId($websiteId)->loadByEmail($Data['email']);
+		
+        if (!$customer->getId()) {
+			
+            // create new customer
+			if ($params['insert_customer_id'] == "true") {
+				if (!empty($Data['customer_id'])) {
+					$query = "ALTER TABLE customer_entity AUTO_INCREMENT = ".$Data['customer_id']."";
+					$new_customer_id = $connection->query($query);
+				}
+			}
+			//insert customer group if doesn't exist
+			if($params['auto_create_customer_groups'] == "true") { 
+				$code = isset($Data['group']) ? $Data['group'] : '';
+				$collection = $this->_customerGroupCollectionFactory->create()->addFieldToFilter('customer_group_code', $code)->load();// filter by group code
+		 		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+				if(!empty($code)) {
+					$group = $objectManager->create('Magento\Customer\Model\Group')->load($collection->getFirstItem()->getId()); 
+					$group->setCode($code); //set the code
+					$group->setTaxClassId(3); //set tax class. 3 is default value
+					$group->save();
+				}
+			}
+            /**
+             * Check customer group
+             */
+			$customerGroups = $this->getCustomerGroups();
+            if (isset($customerGroups[$Data['group']])) {
+                $customerModel->setGroupId($customerGroups[$Data['group']]);
+            }
+			
+				
+			/* Lets Import Customer Data */
+			$customer_attributes = $customerModel->getAttributes();
+			foreach($customer_attributes as $cal=>$val){
+				if(isset($Data[$cal])) { $customerModel->setData($cal, $Data[$cal]); }
+			}
+			//set website for  new customer
+            $customerModel->setWebsiteId($websiteId);
+			
+			// password change/set
+			if (isset($Data['password']) && strlen($Data['password'])) {
+				$customer_password_hash = $customerModel->hashPassword($Data['password']);
+				$customerModel->setData('password_hash', $customer_password_hash);
+			}
+			
+			try {
+				$customer = $customerModel->save();
+			} catch (\Exception $e) {
+				throw new \Magento\Framework\Exception\LocalizedException(__('ERROR: '. $e->getMessage()));
+			}
+			
+			/* Lets Import Addresses AFTER */
+			$billingAttributesArray = array();
+			$shippingAttributesArray = array();
+			$customer_attributes = $this->_customerModel->getAttributes();
+			$customer_address_attributes = $this->_addressModel->getAttributes();
+			
+			foreach($customer_address_attributes as $address_cal=>$address_val){
+				if (!in_array($address_cal, $this->_disabledAddressAttributes)) {
+					/* PREFIX ADDRESS FOR BILLING */
+					if(!empty($Data["billing_".$address_cal])) { $billingAttributesArray[$address_cal] = $Data["billing_".$address_cal]; }
+					/* PREFIX ADDRESS FOR SHIPPING */
+					if(!empty($Data["shipping_".$address_cal])) { $shippingAttributesArray[$address_cal] = $Data["shipping_".$address_cal]; }
+				} 
+			}
+			
+			/* set billing address parent_id and region_id */
+			if(!empty($billingAttributesArray)) {
+				$regionBillingName = isset($Data['billing_region']) ? $Data['billing_region'] : '';
+				if(isset($Data['billing_country_id'])) { 
+					$billing_country_id = $Data['billing_country_id']; 
+				} else if(isset($Data['billing_country'])) {  
+					$billing_country_id = $Data['billing_country'];
+				} else {
+					throw new \Magento\Framework\Exception\LocalizedException(
+						__('ERROR: CSV MUST HAS A COLUMN EITHER billing_country or billing_country_id')
+					);
+				}
+				$billingRegionId = $this->getRegionId($billing_country_id, $regionBillingName);
+				$billingAttributesArray['region_id'] = $billingRegionId;
+				$billingAttributesArray['parent_id'] = $customer->getId();
+			}
+			if(!empty($shippingAttributesArray)) {
+				/* set shipping address parent_id and region_id */
+				$regionShippingName = isset($Data['shipping_region']) ? $Data['shipping_region'] : '';
+				if(isset($Data['shipping_country_id'])) { 
+					$shipping_country_id = $Data['shipping_country_id']; 
+				} else if(isset($Data['shipping_country'])) {  
+					$shipping_country_id = $Data['shipping_country'];
+				} else {
+					throw new \Magento\Framework\Exception\LocalizedException(
+						__('ERROR: CSV MUST HAS A COLUMN EITHER shipping_country or shipping_country_id')
+					);
+				}
+				$shippingRegionId = $this->getRegionId($shipping_country_id, $regionShippingName);
+				$shippingAttributesArray['region_id'] = $shippingRegionId;
+				$shippingAttributesArray['parent_id'] = $customer->getId();
+			}
+			
+			//SET ADDRESS AS DEFAULT BILLING
+			if(isset($Data["is_default_billing"]) && !empty($billingAttributesArray)) { 
+				if($Data["is_default_billing"] == 1 && $Data["is_default_shipping"] == 1 ) {
+					$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+					$billingaddressInserted->save();
+					$customer->setData('default_billing', $billingaddressInserted->getId());
+					$customer->setData('default_shipping', $billingaddressInserted->getId());
+				} else if($Data["is_default_billing"] == 1 && $Data["is_default_shipping"] == 0) { 
+					$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+					$billingaddressInserted->save();
+					$customer->setData('default_billing', $billingaddressInserted->getId());
+				} else if($Data["is_default_billing"] == 0 && $Data["is_default_shipping"] == 0) { 
+					$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+					$billingaddressInserted->save();
+					$customer->setData('default_billing', 0);
+					$customer->setData('default_shipping', 0);
+				}
+			} else {
+				$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+				$billingaddressInserted->save();
+				$customer->setData('default_billing', $billingaddressInserted->getId());
+				$customer->setData('default_shipping', $billingaddressInserted->getId());
+			}
+			
+			//SET ADDRESS AS DEFAULT SHIPPING
+			if(isset($Data["is_default_shipping"]) && !empty($shippingAttributesArray)) { 
+				if($Data["is_default_billing"] == 0 && $Data["is_default_shipping"] == 1) { 
+					$shippingaddressInserted = $this->_addressModel->setData($shippingAttributesArray);
+					$shippingaddressInserted->save(); 
+					$customer->setData('default_shipping', $shippingaddressInserted->getId());
+				} 
+			}
+			
+			/* START FORCE OLD CUSTOMER DATE */
+			if(isset($Data['customer_since']) && !isset($Data['created_at'])) {
+				$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+				$importDate = date("Y-m-d H:i:s", $objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime')->timestamp($Data['customer_since']));
+				$customer->setCreatedAt($importDate);
+			}
+			/* END FORCE OLD CUSTOMER DATE */
+			#exit;
+			try {
+				$customer->save();
+			} catch (\Exception $e) {
+				throw new \Magento\Framework\Exception\LocalizedException(__('ERROR: '. $e->getMessage()));
+			}
+			
+			if (isset($Data['is_subscribed'])) {
+				#$customerModel->setData('is_subscribed', $Data['is_subscribed']);
+				# get just generated subscriber
+				$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+				$subscriber = $objectManager->create('Magento\Newsletter\Model\Subscriber')->loadByCustomerId($customer->getId());
+				$subscriber->setStoreId($customer->getStoreId());
+				$subscriber->setCustomerId($customer->getId());
+				$subscriber->setSubscriberEmail($Data['email']);
+				# change status to “subscribed” and save
+				if($Data['is_subscribed'] == "1") {
+					$subscriber->setSubscriberStatus(\Magento\Newsletter\Model\Subscriber::STATUS_SUBSCRIBED);
+				} else {
+					$subscriber->setSubscriberStatus(\Magento\Newsletter\Model\Subscriber::STATUS_UNSUBSCRIBED);
+				}
+				$subscriber->save();
+			}
+			/*
+			if($params['email_customer_password'] == "true") { 
+				$customer->sendNewAccountEmail();
+			} 
+			*/
+        } else {
+			
+			if($params['auto_create_customer_groups'] == "true") { 
+				$code = isset($Data['group']) ? $Data['group'] : '';
+				$collection = $this->_customerGroupCollectionFactory->create()->addFieldToFilter('customer_group_code', $code)->load();// filter by group code
+		 		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+				if(!empty($code)) {
+					$group = $objectManager->create('Magento\Customer\Model\Group')->load($collection->getFirstItem()->getId()); 
+					$group->setCode($code); //set the code
+					$group->setTaxClassId(3); //set tax class. 3 is default value
+					$group->save();
+				}
+			}
+			$customer_attributes = $this->_customerModel->getAttributes();
+			#$customerModel = $this->_customerModel->load($customer->getId());
+            /**
+             * Check customer group
+             */
+			$customerGroups = $this->getCustomerGroups();
+            if (isset($customerGroups[$Data['group']])) {
+                $customer->setGroupId($customerGroups[$Data['group']]);
+            }
+			/* Lets Import Addresses First */
+			$billingAttributesArray = array();
+			$shippingAttributesArray = array();
+			$customer_address_attributes = $this->_addressModel->getAttributes();
+			
+			foreach($customer_address_attributes as $address_cal=>$address_val){
+				if (!in_array($address_cal, $this->_disabledAddressAttributes)) {
+					/* PREFIX ADDRESS FOR BILLING */
+					if(!empty($Data["billing_".$address_cal])) { $billingAttributesArray[$address_cal] = $Data["billing_".$address_cal]; }
+					/* PREFIX ADDRESS FOR SHIPPING */
+					if(!empty($Data["shipping_".$address_cal])) { $shippingAttributesArray[$address_cal] = $Data["shipping_".$address_cal]; }
+				} 
+			}
+			
+			/* set billing address parent_id and region_id */
+			if(!empty($billingAttributesArray)) {
+				$regionBillingName = isset($Data['billing_region']) ? $Data['billing_region'] : '';
+				if(isset($Data['billing_country_id'])) { 
+					$billing_country_id = $Data['billing_country_id']; 
+				} else if(isset($Data['billing_country'])) {  
+					$billing_country_id = $Data['billing_country'];
+				} else {
+					throw new \Magento\Framework\Exception\LocalizedException(
+						__('ERROR: CSV MUST HAS A COLUMN EITHER billing_country or billing_country_id')
+					);
+				}
+				$billingRegionId = $this->getRegionId($billing_country_id, $regionBillingName);
+				$billingAttributesArray['region_id'] = $billingRegionId;
+				$billingAttributesArray['parent_id'] = $customer->getId();
+			}
+			/* set shipping address parent_id and region_id */
+			if(!empty($shippingAttributesArray)) {
+				$regionShippingName = isset($Data['shipping_region']) ? $Data['shipping_region'] : '';
+				if(isset($Data['shipping_country_id'])) { 
+					$shipping_country_id = $Data['shipping_country_id']; 
+				} else if(isset($Data['shipping_country'])) {  
+					$shipping_country_id = $Data['shipping_country'];
+				} else {
+					throw new \Magento\Framework\Exception\LocalizedException(
+						__('ERROR: CSV MUST HAS A COLUMN EITHER shipping_country or shipping_country_id')
+					);
+				}
+				$shippingRegionId = $this->getRegionId($shipping_country_id, $regionShippingName);
+				$shippingAttributesArray['region_id'] = $shippingRegionId;
+				$shippingAttributesArray['parent_id'] = $customer->getId();
+			}
+			/*
+			$addressOneData = [
+				'firstname' => 'test firstname',
+				'lastname' => 'test lastname',
+				'street' => ['test street'],
+				'city' => 'test city',
+				'region_id' => '2',
+				'country_id' => 'US',
+				'postcode' => '01001',
+				'telephone' => '+7000000001',
+				'parent_id' => $customer->getId(),
+			];
+			*/
+			
+			//if($params['import_multiple_customer_address'] == "true") {  }
+			
+			//SET ADDRESS AS DEFAULT BILLING
+			if(isset($Data["is_default_billing"]) && !empty($billingAttributesArray)) { 
+				if($Data["is_default_billing"] == 1 && $Data["is_default_shipping"] == 1 ) {
+					$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+					$billingaddressInserted->save();
+					$customer->setData('default_billing', $billingaddressInserted->getId());
+					$customer->setData('default_shipping', $billingaddressInserted->getId());
+				} else if($Data["is_default_billing"] == 1 && $Data["is_default_shipping"] == 0) { 
+					$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+					$billingaddressInserted->save();
+					$customer->setData('default_billing', $billingaddressInserted->getId());
+				} else if($Data["is_default_billing"] == 0 && $Data["is_default_shipping"] == 0) { 
+					$billingaddressInserted = $this->_addressModel->setData($billingAttributesArray);
+					$billingaddressInserted->save();
+					#$customer->setData('default_billing', 0);
+					#$customer->setData('default_shipping', 0);
+				}
+			}
+			
+			//SET ADDRESS AS DEFAULT SHIPPING
+			if(isset($Data["is_default_shipping"]) && !empty($shippingAttributesArray)) { 
+				if($Data["is_default_billing"] == 0 && $Data["is_default_shipping"] == 1) { 
+					$shippingaddressInserted = $this->_addressModel->setData($shippingAttributesArray);
+					$shippingaddressInserted->save(); 
+					$customer->setData('default_shipping', $shippingaddressInserted->getId());
+				} 
+			} 
+			
+			/* Lets Import Customer Data */
+			foreach($customer_attributes as $cal=>$val){
+				if (!in_array($cal, $this->_disabledAttributes)) {
+					if(isset($Data[$cal])) { $customer->setData($cal, $Data[$cal]); }
+				}
+			}
+			if (isset($Data['is_subscribed'])) {
+				#$customerModel->setData('is_subscribed', true);
+				# get just generated subscriber
+				$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+				$subscriber = $objectManager->create('Magento\Newsletter\Model\Subscriber')->loadByCustomerId($customer->getId());
+				$subscriber->setStoreId($customer->getStoreId());
+				$subscriber->setCustomerId($customer->getId());
+				$subscriber->setSubscriberEmail($Data['email']);
+				# change status to “subscribed” and save
+				if($Data['is_subscribed'] == "1") {
+					$subscriber->setSubscriberStatus(\Magento\Newsletter\Model\Subscriber::STATUS_SUBSCRIBED);
+				} else {
+					$subscriber->setSubscriberStatus(\Magento\Newsletter\Model\Subscriber::STATUS_UNSUBSCRIBED);
+				}
+				$subscriber->save();
+			}
+			// password change/set
+			if (isset($Data['password']) && strlen($Data['password'])) {
+				$customer_password_hash = $customer->hashPassword($Data['password']);
+				$customer->setData('password_hash', $customer_password_hash);
+			}
+			
+			try {
+				$customer->save();
+			} catch (\Exception $e) {
+				throw new \Magento\Framework\Exception\LocalizedException(__('ERROR: '. $e->getMessage()));
+			}
+			
+			/*
+			if($params['email_customer_password'] == "true") { 
+				$customer->sendNewAccountEmail();
+			} 
+			*/
+		
+		}
+    }
+}
