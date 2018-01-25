@@ -15,10 +15,12 @@ $_item = $block->getItem() ?>
         <?php if ($block->getItemOptions()): ?>
             <dl class="item-options">
                 <?php foreach ($block->getItemOptions() as $option): ?>
+                <?php if (fnmatch('Longueur*', $option['label']) or fnmatch("*paisseur*", $option['label']) or fnmatch('Largeur*', $option['label']) or fnmatch('Quantité [*', $option['label'])): ?>
                     <dt><strong><em><?= /* @escapeNotVerified */  $option['label'] ?></em></strong></dt>
                     <dd>
                         <?= /* @escapeNotVerified */  nl2br($option['value']) ?>
                     </dd>
+                <?php endif; ?>
                 <?php endforeach; ?>
             </dl>
         <?php endif; ?>
