@@ -44,7 +44,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     <dl class="item-options">
                         <?php foreach ($_options as $_option) : ?>
                             <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
-                            <?php if (strpos($_option['label'], 'ongueu') or strpos($_option['label'], 'paisseu') or strpos($_option['label'], 'argeu')): ?>
+                            <?php if (fnmatch('Longueur*', $_option['label']) or fnmatch("*paisseur*", $_option['label']) or fnmatch('Largeur*', $_option['label']) or fnmatch('Quantité [*', $_option['label'])): ?>
                             <dt><?php echo $block->escapeHtml($_option['label']) ?></dt>
                             <dd>
                                 <?php if (isset($_formatedOptionValue['full_view'])): ?>

@@ -30,7 +30,7 @@
             <strong class="subtitle"><!-- ko i18n: 'Options Details' --><!-- /ko --></strong>
             <dl class="item-options">
                 <!--ko foreach: JSON.parse($parent.options)-->
-                <!--ko if: (label == "Quantité [m2]")-->
+                <!--ko if: (label.includes("Longueur") || label.includes("paisseur") || label.includes("Largeur") || label.includes("Quantité ["))-->
                 <dt class="label" data-bind="text: label"></dt>
                     <!-- ko if: ($data.full_view)-->
                     <dd class="values" data-bind="html: full_view"></dd>

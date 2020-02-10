@@ -48,4 +48,6 @@ atlassian*
 /var/*
 !/var/.htaccess
 /vendor/*
+!/vendor/magento
+!/vendor/magento/*
 !/vendor/.htaccess

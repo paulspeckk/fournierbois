@@ -22,7 +22,7 @@ define(
                     return '';
                 }
                 var shippingMethod = quote.shippingMethod();
-                return shippingMethod ? shippingMethod.carrier_title + " - " + shippingMethod.method_title : '';
+                return shippingMethod ? shippingMethod.carrier_title + "" : '';
             },
             isCalculated: function() {
                 return this.totals() && this.isFullMode() && null != quote.shippingMethod();

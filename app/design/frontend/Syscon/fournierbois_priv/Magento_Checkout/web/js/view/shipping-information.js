@@ -25,7 +25,7 @@ define(
 
             getShippingMethodTitle: function() {
                 var shippingMethod = quote.shippingMethod();
-                return shippingMethod ? shippingMethod.carrier_title + " - " + shippingMethod.method_title : '';
+                return shippingMethod ? shippingMethod.carrier_title + "" : '';
             },
 
             back: function() {

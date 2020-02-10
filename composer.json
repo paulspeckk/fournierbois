@@ -12,7 +12,8 @@
         "composer/composer": "@alpha",
         "Imaginaerum/magento2-language-fr-fr": "*",
         "deved/magento2-disable-customer-registration": "dev-master",
-        "magepal/magento2-reindex": "^1.0"
+        "magepal/magento2-reindex": "^1.0",
+        "comsolit/rappenrunden": "^0.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
