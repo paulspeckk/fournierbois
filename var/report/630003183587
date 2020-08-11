@@ -1,0 +1,9 @@
+a:4:{i:0;s:287:"Please upgrade your database: Run "bin/magento setup:upgrade" from the Magento root directory. 
+The following modules are outdated:
+Comsolit_RappenRunden schema: current version - none, required version - 0.0.1
+Comsolit_RappenRunden data: current version - none, required version - 0.0.1";i:1;s:848:"#0 /var/www/magento2/vendor/magento/framework/Interception/Interceptor.php(142): Magento\Framework\Module\Plugin\DbStatusValidator->aroundDispatch(Object(Magento\Framework\App\FrontController\Interceptor), Object(Closure), Object(Magento\Framework\App\Request\Http))
+#1 /var/www/magento2/var/generation/Magento/Framework/App/FrontController/Interceptor.php(26): Magento\Framework\App\FrontController\Interceptor->___callPlugins('dispatch', Array, Array)
+#2 /var/www/magento2/vendor/magento/framework/App/Http.php(135): Magento\Framework\App\FrontController\Interceptor->dispatch(Object(Magento\Framework\App\Request\Http))
+#3 /var/www/magento2/vendor/magento/framework/App/Bootstrap.php(258): Magento\Framework\App\Http->launch()
+#4 /var/www/magento2/index.php(39): Magento\Framework\App\Bootstrap->run(Object(Magento\Framework\App\Http))
+#5 {main}";s:3:"url";s:11:"/adminlogin";s:11:"script_name";s:10:"/index.php";}

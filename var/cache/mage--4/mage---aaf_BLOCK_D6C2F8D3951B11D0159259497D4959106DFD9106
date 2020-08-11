@@ -1,0 +1,602 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1597143583;s:6:"expire";i:1597229983;s:4:"tags";s:283:"aaf_CATALOG_PRODUCT,aaf_BLOCK_HTML,aaf_CATALOG_PRODUCT_133,aaf_CATALOG_PRODUCT_135,aaf_CATALOG_PRODUCT_141,aaf_CATALOG_PRODUCT_142,aaf_CATALOG_PRODUCT_143,aaf_CATALOG_PRODUCT_144,aaf_CATALOG_PRODUCT_145,aaf_CATALOG_PRODUCT_146,aaf_CATALOG_PRODUCT_147,aaf_CATALOG_PRODUCT_148,aaf_MAGE";}
+    <div class="block widget block-products-list grid">
+                <div class="block-title">
+            <strong>Articles (TVA incluse, frais de port en sus si nécessaire)</strong>
+        </div>
+                <div class="block-content">
+            <!-- new_products_content_widget_grid-->            <div class="products-grid grid">
+                <ol class="product-items widget-product-grid">
+                                                                <li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/brossage-a-facon.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/l/a/lala.jpg"
+             width="240"
+             height="300"
+             alt="Testprodukt"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Testprodukt"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/brossage-a-facon.html"
+                                       class="product-item-link">
+                                        Testprodukt                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="133">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-133-widget-product-grid"                data-price-amount="35"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">35,00 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/brossage-a-facon.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"133","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"133","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/panneaux-3-plis-chene-20-mm-1250-mm.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/3/_/3_plis_chene.jpg"
+             width="240"
+             height="300"
+             alt="Panneaux 3 plis chêne 20 mm (1250 mm)"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Panneaux 3 plis chêne 20 mm (1250 mm)"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/panneaux-3-plis-chene-20-mm-1250-mm.html"
+                                       class="product-item-link">
+                                        Panneaux 3 plis chêne 20 mm (1250 mm)                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="135">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-135-widget-product-grid"                data-price-amount="164"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">164,00 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/panneaux-3-plis-chene-20-mm-1250-mm.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"135","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"135","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/panneaux-3-plis-chene-20-mm-1650-mm.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/3/_/3_plis_chene.jpg"
+             width="240"
+             height="300"
+             alt="Panneaux 3 plis chêne 20 mm (1650 mm)"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Panneaux 3 plis chêne 20 mm (1650 mm)"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/panneaux-3-plis-chene-20-mm-1650-mm.html"
+                                       class="product-item-link">
+                                        Panneaux 3 plis chêne 20 mm (1650 mm)                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="141">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-141-widget-product-grid"                data-price-amount="184"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">184,00 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/panneaux-3-plis-chene-20-mm-1650-mm.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"141","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"141","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/tyvek-x1.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/t/y/tyvek_x1.png"
+             width="240"
+             height="300"
+             alt="Tyvek X1"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Tyvek X1"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/tyvek-x1.html"
+                                       class="product-item-link">
+                                        Tyvek X1                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="142">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-142-widget-product-grid"                data-price-amount="5.55"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">5,55 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/tyvek-x1.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"142","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"142","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/tyvek-x3.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/t/y/tyvek_x3.png"
+             width="240"
+             height="300"
+             alt="Tyvek X3"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Tyvek X3"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/tyvek-x3.html"
+                                       class="product-item-link">
+                                        Tyvek X3                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="143">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-143-widget-product-grid"                data-price-amount="9.4"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">9,40 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/tyvek-x3.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"143","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"143","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/duo-epicea-visible-100-mm.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/d/u/duo_visible.jpg"
+             width="240"
+             height="300"
+             alt="Duo épicéa visible 100 mm"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Duo épicéa visible 100 mm"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/duo-epicea-visible-100-mm.html"
+                                       class="product-item-link">
+                                        Duo épicéa visible 100 mm                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="144">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-144-widget-product-grid"                data-price-amount="820"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">820,00 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/duo-epicea-visible-100-mm.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"144","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"144","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/menuiserie-merisier-i-ii.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/m/e/menuiserie_merisier.jpg"
+             width="240"
+             height="300"
+             alt="Menuiserie merisier I/II"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Menuiserie merisier I/II"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/menuiserie-merisier-i-ii.html"
+                                       class="product-item-link">
+                                        Menuiserie merisier I/II                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="145">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-145-widget-product-grid"                data-price-amount="3250"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">3 250,00 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/menuiserie-merisier-i-ii.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"145","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"145","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-16mm.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/p/a/panneau_melamine_pfl_sapin_antique.jpg"
+             width="240"
+             height="300"
+             alt="Px mélaminés Pfleider décor bois No 55008 RU sapin ant 16mm"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Px mélaminés Pfleider décor bois No 55008 RU sapin ant 16mm"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-16mm.html"
+                                       class="product-item-link">
+                                        Px mélaminés Pfleider décor bois No 55008 RU sapin ant 16mm                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="146">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-146-widget-product-grid"                data-price-amount="22.15"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">22,15 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-16mm.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"146","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"146","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-19mm.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/p/a/panneau_melamine_pfl_sapin_antique.jpg"
+             width="240"
+             height="300"
+             alt="Px mélaminés Pfleider décor bois No 55008 RU sapin ant 19mm"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Px mélaminés Pfleider décor bois No 55008 RU sapin ant 19mm"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-19mm.html"
+                                       class="product-item-link">
+                                        Px mélaminés Pfleider décor bois No 55008 RU sapin ant 19mm                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="147">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-147-widget-product-grid"                data-price-amount="23.6"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">23,60 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-19mm.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"147","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"147","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-8mm.html" class="product-item-photo">
+                                
+<span class="product-image-container"
+      style="width:240px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+                          src="http://dev4.fournierbois.ch/pub/media/catalog/product/cache/small_image/240x300/beff4985b56e3afdbeabfc89641a4582/p/a/panneau_melamine_pfl_sapin_antique.jpg"
+             width="240"
+             height="300"
+             alt="Px mélaminés Pfleider décor bois No 55008 RU sapin ant 8mm"/></span>
+</span>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Px mélaminés Pfleider décor bois No 55008 RU sapin ant 8mm"
+                                       href="http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-8mm.html"
+                                       class="product-item-link">
+                                        Px mélaminés Pfleider décor bois No 55008 RU sapin ant 8mm                                    </a>
+                                </strong>
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="148">
+    
+
+<span class="price-container price-final_price tax weee"
+        >
+        <span  id="old-price-148-widget-product-grid"                data-price-amount="20.6"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+        >
+        <span class="price">20,60 CHF</span>    </span>
+        </span>
+
+</div>
+                                                                                                    
+                                                                    <div class="product-item-actions">
+                                                                                    <div class="actions-primary">
+                                                                                                                                                            <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"http://dev4.fournierbois.ch/prof_view_de/px-melamines-pfleider-decor-bois-no-55008-ru-sapin-ant-8mm.html?options=cart"}}'
+                                                                type="button" title="Ajouter au panier">
+                                                            <span>Ajouter au panier</span>
+                                                        </button>
+                                                                                                                                                </div>
+                                                                                                                            <div class="actions-secondary" data-role="add-to-links">
+                                                                                                    <a href="#"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/wishlist\/index\/add\/","data":{"product":"148","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="Ajouter à ma liste d’envie">
+                                                        <span>Ajouter à ma liste d’envie</span>
+                                                    </a>
+                                                                                                                                                                                                        <a href="#" class="action tocompare"
+                                                       data-post='{"action":"http:\/\/dev4.fournierbois.ch\/prof_view_de\/catalog\/product_compare\/add\/","data":{"product":"148","uenc":"aHR0cDovL2RldjQuZm91cm5pZXJib2lzLmNoL3Byb2Zfdmlld19kZS8,"}}'
+                                                       title="Ajouter au comparateur">
+                                                        <span>Ajouter au comparateur</span>
+                                                    </a>
+                                                                                            </div>
+                                                                            </div>
+                                                            </div>
+                        </div>
+                        </li>                                    </ol>
+            </div>
+                    </div>
+    </div>

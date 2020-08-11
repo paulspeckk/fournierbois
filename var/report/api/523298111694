@@ -1,0 +1,1 @@
+s:267:"Fatal Error: 'syntax error, unexpected 'endforeach' (T_ENDFOREACH), expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF)' in '/var/www/magento2/app/design/frontend/Syscon/fournierbois_priv/Magento_Sales/templates/email/items/order/default.phtml' on line 27";
